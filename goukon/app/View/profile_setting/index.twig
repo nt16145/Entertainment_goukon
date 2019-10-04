@@ -1,0 +1,113 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+
+{#HTMLのタイトルを定義します。#}
+{% block title %}プロフィール編集{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
+{% block header_scripts_add %}
+
+
+{% endblock %}
+
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+<!-- <script>
+$(function(){
+  //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
+  $('form').on('change', 'input[type="file"]', function(e) {
+    var file = e.target.files[0],
+        reader = new FileReader(),
+        $preview = $(".preview");
+        t = this;
+
+    // 画像ファイル以外の場合は何もしない
+    if(file.type.indexOf("image") < 0){
+      return false;
+    }
+
+    // ファイル読み込みが完了した際のイベント登録
+    reader.onload = (function(file) {
+      return function(e) {
+        //既存のプレビューを削除
+        $preview.empty();
+        // .prevewの領域の中にロードした画像を表示するimageタグを追加
+        $preview.append($('<img>').attr({
+                  src: e.target.result,
+                  width: "150px",
+                  class: "preview",
+                  title: file.name
+              }));
+      };
+    })(file);
+
+    reader.readAsDataURL(file);
+  });
+}); -->
+</script>
+
+        <div class="page-header text-center">
+            <h1>プロフィール編集</h1>
+        </div>
+
+        <div class="box">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well">
+                        <form id="loginForm" method="POST" action="/profile_setting/" enctype="application/x-www-form-urlencoded">
+                            {% if error %}
+                                <div class="form-group">
+                                    <div class="alert alert-danger" role="alert">{{ error }}</div>
+                                </div>
+                            {% endif %}
+                            <div class="form-group" style="text-align:center">
+                              <img src="/assets/img/user_image_default.png" style="width:20vw"/>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label"> メールアドレス</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ session.user_info.email }}" required title="Please enter you email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label"> パスワード</label>
+                                <input type="password" class="form-control" id="password" name="password" value="{{ session.user_info.password }}" required title="Please enter your password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label"> パスワード再</label>
+                                <input type="password" class="form-control" id="password_re" name="password_re" value="{{ session.user_info.password }}" required title="Please re enter your password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label"> ニックネーム</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ session.user_info.name }}" required title="Please enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label"> 性別</label>
+                                <select class="form-control" id="sex" name="sex" value="{{ session.user_info.sex }}" required title="Please enter your name">
+                                  <option>男</option>
+                                  <option>女</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label"> 年齢</label>
+                                <input type="text" class="form-control" id="age" name="age" value="{{ session.user_info.age }}" required title="Please enter your address" placeholder="20">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label"> 電話番号</label>
+                                <input type="tel" class="form-control" id="tel" name="tel" value="{{ session.user_info.tel }}" required title="Please enter your tel no" >
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label">自己PR</label>
+                                <textarea class="form-control" id="introduction" name="introduction" rows="5">
+                                  {{ session.user_info.introduction }}
+                                </textarea>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-block">完了</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}
