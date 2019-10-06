@@ -16,5 +16,8 @@ ADD goukon /var/www/goukon
 
 RUN a2ensite slim3
 
+RUN a2dissite 000-default
+
+RUN a2enmod rewrite
 
 EXPOSE 80

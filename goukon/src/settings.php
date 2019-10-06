@@ -31,11 +31,11 @@ return [
 
             'connection' => [
                 'driver' => 'pdo_mysql',
-                'host' => '192.168.0.19',
+                'host' => 'mysql',
                 'port' => '3306',
-                'user' => 'team-c',
-                'password' => 'team-c!',
-                'dbname' => 'team-c',
+                'user' => 'root',
+                'password' => 'your_password',
+                'dbname' => 'goukon',
                 'charset' => 'utf8'
             ]
         ]
