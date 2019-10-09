@@ -27,7 +27,17 @@ $app->post('/profile_setting/', function (Request $request, Response $response) 
     $upd["id"] = $data["id"];
 
     //dd($upd);
+    //hashをpasswordフィールドに
+    if($upd["password"] == null ) {
 
+        $upd["password"] = $data["password"];
+
+    } else {
+
+        $upd["password"] = password_hash($upd["password_re"], PASSWORD_BCRYPT);
+
+    }
+    
     //ユーザーDAOをインスタンス化
     $user = new User($this->db);
 

@@ -22,6 +22,11 @@ $app->post('/register/', function (Request $request, Response $response) {
     //POSTされた内容を取得します
     $data = $request->getParsedBody();
 
+    //hashをpasswordフィールドに
+    $data["password"] = password_hash($data["password_re"], PASSWORD_BCRYPT);
+
+    //DD($data);
+
     //ユーザーDAOをインスタンス化
     $user = new User($this->db);
 
