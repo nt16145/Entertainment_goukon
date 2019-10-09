@@ -7,7 +7,13 @@ use Model\Dao\User;
 // グループ作成画面ページのコントローラ
 $app->get('/profile_setting/', function (Request $request, Response $response) {
 
-    $data = [];
+    $data = $this->session["user_info"];
+
+    if($data["name"] == null) {
+
+        return $this->view->render($response, 'login/login.twig');
+
+    }
 
     $user = new User($this->db);
 

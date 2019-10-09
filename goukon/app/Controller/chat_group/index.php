@@ -7,7 +7,13 @@ use Model\Dao\Chat;
 // グループ作成画面ページのコントローラ
 $app->get('/chat_group/', function (Request $request, Response $response) {
 
-    $data = [];
+    $data = $this->session["user_info"];
+
+    if($data["name"] == null) {
+
+        return $this->view->render($response, 'login/login.twig');
+
+    }
 
     // Render index view
     return $this->view->render($response, 'chat_group/index.twig', $data);
