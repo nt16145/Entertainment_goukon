@@ -15,15 +15,14 @@
         合コンを検索
     </h1>
     <form id="joinGroup" method="POST" action="/join_group/" enctype="application/x-www-form-urlencoded">
-
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="kaisaibi">開催日</label>
                 <select class="custom-select d-block w-100" name="event_date" required>
                     <option value="">未選択</option>
-                    {% set date_start   = "now"|date("m-d") %}
-                    {% set date_end     = "now"|date("Y-m-d H:i:s",strtotime("-1 day") %}
-                    {% for i in date_start..date_end %}
+                {% set date_start   = "now"|date("m-d") %}
+                {% set date_end     = "now"|date("m-d",strtotime("-1 day")) %}
+                {% for i in date_start..date_end %}
                     <option value="{{i}}">{{i}}</option>
                 {% endfor %}
             </select>
