@@ -11,7 +11,7 @@ $app->get('/profile_setting/', function (Request $request, Response $response) {
 
     if($data["name"] == null) {
 
-        return $this->view->render($response, 'login/login.twig');
+         return $response->withRedirect('/login/');
 
     }
 
