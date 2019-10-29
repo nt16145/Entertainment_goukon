@@ -73,9 +73,11 @@
                 <label for="saidaininnzuu">最大人数</label>
                 <select class="custom-select d-block w-100" name="max_people" required>
                     <option value="">未選択</option>
-                    <option value="4人">4人</option>
-                    <option value="6人">6人</option>
-                    <option value="8人">8人</option>
+                    {% set start = 2 %}
+                    {% set end   = 10 %}
+                    {% for i in start..end %}
+                        <option value="{{i}}人">{{i}}人</option>
+                    {% endfor %}
                 </select>
                 <div class="invalid-feedback">
                     最大人数を選択してください
