@@ -23,9 +23,9 @@ services:
     # - jyugyou_default
 
   jyugyou:
-    build: ./jyugyou_flask/
+    build: ~/jyugyou/
     volumes:
-      - "./jyugyou_flask/jyugyou:/jyugyou/"
+      - "~/jyugyou/jyugyou:/jyugyou/"
     tty: true
     environment:
       TZ: Asia/Tokyo
@@ -42,18 +42,15 @@ services:
       env_file:
         - .env
       environment:
-        MYSQL_USER: goukon
-        MYSQL_DATABASE: goukon
+        MYSQL_DATABASE: ${DATABASE}
+        MYSQL_USER: ${USERNAME}
+        MYSQL_PASSWORD: ${USERPASS}
+        MYSQL_ROOT_PASSWORD: ${ROOTPASS}
         TZ: "Asia/Tokyo"
         BIND-ADDRESS: 0.0.0.0
       volumes:
         - ./mysql/mysql_conf:/etc/mysql/conf.d
-          #- ./mysql/mysql_init:/docker-entrypoint-initdb.d
+        - ./initdb.d/:/docker-entrypoint-initdb.d
       ports:
         - 3306:3306
 
-          #networks:
-          #slim_default:
-          #external: true
-          #jyugyou_default:
-          #external: true
