@@ -1,0 +1,30 @@
+version: '3.3'
+
+volumes:
+  logs:
+    driver: local
+
+services:
+
+  slim:
+      build:
+        context: .
+        dockerfile: ./php/Dockerfile
+      port:
+        - 80:80
+  mysql:
+      image: mysql:8.0
+      env_file:
+        - .env
+      environment:
+        MYSQL_DATABASE: ${DATABASE}
+        MYSQL_USER: ${USERNAME}
+        MYSQL_PASSWORD: ${USERPASS}
+        TZ: "Asia/Tokyo"
+        BIND-ADDRESS: 0.0.0.0
+      volumes:
+        - ./mysql/mysql_conf:/etc/mysql/conf.d
+        - ./initdb.d/:/docker-entrypoint-initdb.d
+      ports:
+        - 3306:3306
+

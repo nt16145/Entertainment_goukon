@@ -1,5 +1,7 @@
 <?php
 
+require('.env');
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -33,9 +35,9 @@ return [
                 'driver' => 'pdo_mysql',
                 'host' => 'mysql',
                 'port' => '3306',
-                'user' => 'root',
-                'password' => 'your_password',
-                'dbname' => 'goukon',
+                'user' => $user,
+                'password' => $password,
+                'dbname' => $dbname,
                 'charset' => 'utf8'
             ]
         ]
