@@ -10,7 +10,7 @@ services:
       build:
         context: .
         dockerfile: ./php/Dockerfile
-      port:
+      ports:
         - 80:80
   mysql:
       image: mysql:8.0
